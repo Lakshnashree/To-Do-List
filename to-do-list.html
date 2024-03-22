@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            background-color: rgb(100, 122, 126);
+        }
+        body {
+        font-family: 'Arial', sans-serif;
+        background-color: azure;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        }
+
+        #todo-container {
+        width: 400px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        }
+
+        #todo-header {
+        background-color: rgb(73, 150, 150);
+        padding: 16px;
+        color: #fff;
+        text-align: center;
+        font-size: 24px;
+        }
+
+        #todo-list {
+        padding: 16px;
+        }
+
+        .task {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #ddd;
+        padding: 12px 0;
+        }
+
+        .task:last-child {
+        border-bottom: none;
+        }
+
+        .task input[type="checkbox"] {
+        margin-right: 10px;
+        }
+
+        .add-task-container {
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        }
+
+        #new-task {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        }
+
+        #add-button {
+            background-color: rgb(73, 150, 150);
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+    </style>
+    <title>Creative To-Do List</title>
+    </head>
+    <body>
+
+    <div id="todo-container">
+        <div id="todo-header">My Creative To-Do List</div>
+        <div id="todo-list"></div>
+        <div class="add-task-container">
+        <input type="text" id="new-task" placeholder="Add a new task">
+        <button id="add-button" onclick="addTask()">Add</button>
+        </div>
+    </div>
+
+    <script>
+        function addTask() {
+        var taskInput = document.getElementById("new-task");
+        var taskText = taskInput.value.trim();
+
+        if (taskText !== "") {
+            var todoList = document.getElementById("todo-list");
+
+            var taskContainer = document.createElement("div");
+            taskContainer.className = "task";
+
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+
+            var taskTextElement = document.createElement("span");
+            taskTextElement.textContent = taskText;
+
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.className = "delete-button";
+            deleteButton.onclick = function() {
+            todoList.removeChild(taskContainer);
+            };
+
+            taskContainer.appendChild(checkbox);
+            taskContainer.appendChild(taskTextElement);
+            taskContainer.appendChild(deleteButton);
+
+            todoList.appendChild(taskContainer);
+
+            taskInput.value = "";
+        }
+        }
+    </script>
+
+    </body>
+    </html>
